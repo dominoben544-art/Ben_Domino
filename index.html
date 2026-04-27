@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ben Domino</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Custom Animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slider-img {
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* Nav Tab Styling */
+        .nav-item {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .nav-item:hover {
+            transform: translateY(-2px);
+        }
+        .nav-item.active p {
+            color: #0097b2;
+            font-weight: 800;
+        }
+
+        /* Hide scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0097b2; 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #007a8f; 
+        }
+
+        /* Background configurations */
+        .bg-cover-center {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body class="h-screen w-full flex justify-center bg-gray-900">
+
+    <!-- Main Application Container (Mobile-first app layout) -->
+    <div class="relative w-full max-w-md h-full bg-white shadow-2xl overflow-hidden flex flex-col">
+        
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-[#218e8d] to-[#45b7b6] py-4 px-6 flex justify-center items-center relative z-20 shadow-md">
+            <!-- Stylized Text resembling the header in the mockup -->
+            <h1 class="text-white text-4xl font-black tracking-widest drop-shadow-md" style="font-family: 'Nunito', sans-serif;">
+                <span class="text-[#f9f9f9] opacity-90">BEN</span> DOMINO
+            </h1>
+        </header>
+
+        <!-- Navigation Section (Slightly Blurred Background) -->
+        <nav class="flex justify-around items-center py-3 bg-white/60 backdrop-blur-md border-b-2 border-gray-100 z-20 relative shadow-sm">
+            
+            <!-- Home Tab -->
+            <div class="nav-item flex flex-col items-center active" onclick="switchTab('home')">
+                <img src='https://im.ge/i/eetppX' alt="Home Icon" class="w-10 h-10 object-contain mb-1 rounded bg-white/50" onerror="this.onerror=null; this.src='https://placehold.co/100x100/0097b2/white?text=Home'">
+                <p class="text-sm font-bold text-gray-400 uppercase tracking-wide">Home</p>
+            </div>
+            
+            <!-- About Tab -->
+            <div class="nav-item flex flex-col items-center" onclick="switchTab('about')">
+                <img src="https://im.ge/i/eetJ18" alt="About Icon" class="w-10 h-10 object-contain mb-1 rounded bg-white/50" onerror="this.onerror=null; this.src='https://placehold.co/100x100/f5a623/white?text=About'">
+                <p class="text-sm font-bold text-gray-400 uppercase tracking-wide">About</p>
+            </div>
+            
+            <!-- Contact Tab -->
+            <div class="nav-item flex flex-col items-center" onclick="switchTab('contact')">
+                <img src="https://im.ge/i/eetnwh" alt="Contact Icon" class="w-10 h-10 object-contain mb-1 rounded bg-white/50" onerror="this.onerror=null; this.src='https://placehold.co/100x100/f8e71c/gray?text=Contact'">
+                <p class="text-sm font-bold text-gray-400 uppercase tracking-wide">Contact</p>
+            </div>
+
+        </nav>
+
+        <!-- Content Area -->
+        <main class="flex-grow relative overflow-y-auto w-full z-10 bg-gray-100">
+
+            <!-- ================= HOME SECTION ================= -->
+            <section id="home" class="absolute inset-0 w-full min-h-full bg-cover-center fade-in flex flex-col p-4 pb-12" style="background-image: url('https://im.ge/i/eet4KM');">
+                
+                <!-- Auto-play Slider -->
+                <div class="mt-6 mx-auto w-full max-w-[90%] rounded-xl shadow-2xl bg-black relative" style="border: 5px solid #0097b2;">
+                    <img id="slider-image" src="https://i9.ytimg.com/vi/R2-62af2d7g/sddefault.jpg?v=63003ab0&sqp=CMTFu88G&rs=AOn4CLDz9k1soKx6JC67ANIXeoI0hH_WYw" alt="Ben Domino Featured" class="w-full aspect-video object-cover rounded-md slider-img">
+                    
+                    <!-- Slider Indicators -->
+                    <div class="absolute bottom-2 left-0 right-0 flex justify-center gap-2" id="slider-dots">
+                        <!-- Dots injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Bottom Text Box -->
+                <div class="mt-auto mb-4 bg-white/80 backdrop-blur-sm rounded-xl p-5 shadow-lg mx-2 border-l-4 border-[#0097b2]">
+                    <h2 class="text-2xl font-black text-gray-800 mb-1 tracking-tight">BEN DOMINO</h2>
+                    <p class="text-gray-600 font-medium">Ben Domino is a domino artist from the Philippines specializing in large-scale and visually impressive domino projects. He demonstrates precision and creativity by transforming simple pieces into remarkable setups.</p>
+                </div>
+
+            </section>
+
+
+            <!-- ================= ABOUT SECTION ================= -->
+            <section id="about" class="absolute inset-0 w-full min-h-full bg-cover-center hidden flex-col p-6 overflow-y-auto" style="background-image: url('https://im.ge/i/eetGXY');">
+                
+                <div class="fade-in bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-2xl mt-4 border-t-4 border-yellow-400 text-center flex flex-col items-center">
+                    
+                    <h2 class="text-3xl font-black text-gray-800 mb-4 tracking-wider">ABOUT ME</h2>
+                    
+                    <!-- Secondary image for About page provided by user -->
+                    <img src="https://im.ge/i/eeytSX" alt="About Content" class="w-full rounded-lg shadow-md border-2 border-gray-200 mb-6" onerror="this.onerror=null; this.src='https://www.image2url.com/r2/default/images/1777269978246-06c913b1-bb3c-4d91-a62d-0270e0ec925c.jpg'">
+                    
+                    <p class="text-gray-700 leading-relaxed font-medium">
+                        I am Ben Domino, a 16-year-old domino artist from the Philippines, formerly known as “Golbergmino.” I create huge and phenomenal domino projects using over 3,000 wooden domino pieces, combining patience, precision, and creativity in every build. My passion for domino art drives me to design intricate setups and push my limits to create more complex and visually impressive displays. Through my work, I aim to inspire others and showcase how simple dominoes can be transformed into something extraordinary. 
+
+I continuously explore new techniques and creative concepts to improve my craft and make each project more unique than the last. With dedication and perseverance, I strive to grow as an artist and share my creations with a wider audience.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- ================= CONTACT SECTION ================= -->
+            <section id="contact" class="absolute inset-0 w-full min-h-full bg-cover-center hidden flex-col p-6 overflow-y-auto" style="background-image: url('https://kommodo.ai/i/DOeykradhU3KMu8igw6T');">
+                
+                <div class="fade-in flex flex-col h-full">
+                    
+                    <!-- Title -->
+                    <div class="text-center my-6 flex items-center justify-center gap-3">
+                        <div class="h-[2px] bg-blue-600 flex-grow"></div>
+                        <h2 class="text-2xl font-black text-gray-800 tracking-widest drop-shadow-sm uppercase">I'm Here!!</h2>
+                        <div class="h-[2px] bg-blue-600 flex-grow"></div>
+                    </div>
+                    <p class="text-center text-gray-500 font-bold text-xs uppercase mb-8 tracking-widest">Click The Icon</p>
+
+                    <!-- Social Links -->
+                    <div class="flex flex-col gap-5 mt-2 w-full max-w-sm mx-auto">
+                        
+                        <!-- YouTube -->
+                        <a href="https://www.youtube.com/@bendomino1218" target="_blank" class="flex items-center bg-gradient-to-r from-[#218e8d] to-[#71d2bd] rounded-full p-1 shadow-lg hover:scale-105 transition-transform border-[3px] border-yellow-400/50 relative overflow-hidden group">
+                            <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-inner z-10 p-1 flex-shrink-0">
+                                <img src="https://kommodo.ai/i/bo35Um2qD7Phuyavdit7" alt="YouTube" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null; this.src='https://placehold.co/100x100/FF0000/white?text=YT'">
+                            </div>
+                            <span class="flex-grow text-center text-white font-bold text-xl tracking-wider pr-6 z-10 drop-shadow-md group-hover:text-yellow-200 transition-colors">YOUTUBE</span>
+                        </a>
+
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/ben_domino" target="_blank" class="flex items-center bg-gradient-to-r from-[#218e8d] to-[#71d2bd] rounded-full p-1 shadow-lg hover:scale-105 transition-transform border-[3px] border-yellow-400/50 relative overflow-hidden group">
+                            <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-inner z-10 p-1 flex-shrink-0">
+                                <img src="https://kommodo.ai/i/k0N9uxmCeObgaiQqHzRC" alt="Instagram" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null; this.src='https://placehold.co/100x100/E1306C/white?text=IG'">
+                            </div>
+                            <span class="flex-grow text-center text-white font-bold text-xl tracking-wider pr-6 z-10 drop-shadow-md group-hover:text-yellow-200 transition-colors">INSTAGRAM</span>
+                        </a>
+
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/Ben-domino-102414439245381/" target="_blank" class="flex items-center bg-gradient-to-r from-[#218e8d] to-[#71d2bd] rounded-full p-1 shadow-lg hover:scale-105 transition-transform border-[3px] border-yellow-400/50 relative overflow-hidden group">
+                            <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-inner z-10 p-1 flex-shrink-0">
+                                <img src="https://kommodo.ai/i/o3Xit5RJpTicu969syH1" alt="Facebook" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null; this.src='https://placehold.co/100x100/1877F2/white?text=FB'">
+                            </div>
+                            <span class="flex-grow text-center text-white font-bold text-xl tracking-wider pr-6 z-10 drop-shadow-md group-hover:text-yellow-200 transition-colors">FACEBOOK</span>
+                        </a>
+
+                        <!-- TikTok -->
+                        <a href="https://www.tiktok.com/@ben_domino?" target="_blank" class="flex items-center bg-gradient-to-r from-[#218e8d] to-[#71d2bd] rounded-full p-1 shadow-lg hover:scale-105 transition-transform border-[3px] border-yellow-400/50 relative overflow-hidden group">
+                            <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-inner z-10 p-1 flex-shrink-0">
+                                <img src="https://kommodo.ai/i/yeOJ7ll493sODgOEOMfH" alt="TikTok" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null; this.src='https://placehold.co/100x100/000000/white?text=TK'">
+                            </div>
+                            <span class="flex-grow text-center text-white font-bold text-xl tracking-wider pr-6 z-10 drop-shadow-md group-hover:text-yellow-200 transition-colors">TIKTOK</span>
+                        </a>
+
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+        
+        <!-- Footer -->
+        <footer class="bg-white py-3 text-center border-t border-gray-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-20 relative">
+            <p class="text-xs font-bold text-gray-500 tracking-widest">©Ben_Domino</p>
+        </footer>
+
+    </div>
+
+    <!-- Application Logic (Slider & Navigation) -->
+    <script>
+        // --- Navigation Logic ---
+        function switchTab(tabId) {
+            // Update Navigation Styles
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Find the clicked item and set active
+            // Event.currentTarget is not available due to inline onclick, so we match by index roughly
+            const tabs = ['home', 'about', 'contact'];
+            const activeIndex = tabs.indexOf(tabId);
+            if(activeIndex >= 0 && navItems[activeIndex]) {
+                navItems[activeIndex].classList.add('active');
+            }
+
+            // Hide all sections
+            document.getElementById('home').classList.add('hidden');
+            document.getElementById('about').classList.add('hidden');
+            document.getElementById('contact').classList.add('hidden');
+
+            // Remove hidden class from the selected section
+            const activeSection = document.getElementById(tabId);
+            activeSection.classList.remove('hidden');
+            activeSection.classList.add('flex'); // Because we use flexbox for centering
+            
+            // Re-trigger animation
+            activeSection.classList.remove('fade-in');
+            void activeSection.offsetWidth; // trigger reflow
+            activeSection.classList.add('fade-in');
+        }
+
+        // --- Slider Logic ---
+        const sliderUrls = [
+            "https://i9.ytimg.com/vi/R2-62af2d7g/sddefault.jpg?v=63003ab0&sqp=CMTFu88G&rs=AOn4CLDz9k1soKx6JC67ANIXeoI0hH_WYw",
+            "https://i9.ytimg.com/vi/7kvyVOrXgSE/maxresdefault.jpg?v=63e264bc&sqp=CMTFu88G&rs=AOn4CLCqmPgqm5KaKyJp-joUYSkk8UsAow",
+            "https://i9.ytimg.com/vi_webp/_wpHmuFNBuE/maxresdefault.webp?v=62f66c4c&sqp=CMTFu88G&rs=AOn4CLCRzcBc8x2ZlWWliEBnQKpZvxRsjg",
+            "https://i9.ytimg.com/vi/stqK2xTmiiU/maxresdefault.jpg?v=629b4b56&sqp=CMTFu88G&rs=AOn4CLD9pJzWeq3gzUI3nnMlLQoy4JWhMQ",
+            "https://i9.ytimg.com/vi/Uvvvl6hiiw4/maxresdefault.jpg?v=624f9959&sqp=CMTFu88G&rs=AOn4CLDCJ2Du2gnnVUdoR0CNFpCtmQcPiA"
+        ];
+
+        let currentSlide = 0;
+        const sliderImageElement = document.getElementById('slider-image');
+        const dotsContainer = document.getElementById('slider-dots');
+
+        // Create navigation dots for the slider
+        sliderUrls.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = `w-2 h-2 rounded-full transition-colors duration-300 ${index === 0 ? 'bg-white' : 'bg-white/40'}`;
+            dot.id = `dot-${index}`;
+            dotsContainer.appendChild(dot);
+        });
+
+        // Auto-play interval
+        setInterval(() => {
+            // Fade out
+            sliderImageElement.style.opacity = 0.5;
+            
+            setTimeout(() => {
+                // Update image index
+                currentSlide = (currentSlide + 1) % sliderUrls.length;
+                sliderImageElement.src = sliderUrls[currentSlide];
+                
+                // Update dots
+                for (let i = 0; i < sliderUrls.length; i++) {
+                    const dot = document.getElementById(`dot-${i}`);
+                    if(i === currentSlide) {
+                        dot.classList.replace('bg-white/40', 'bg-white');
+                    } else {
+                        dot.classList.replace('bg-white', 'bg-white/40');
+                    }
+                }
+
+                // Fade back in
+                sliderImageElement.style.opacity = 1;
+            }, 250); // wait for fade out halfway before swapping src
+
+        }, 3500); // Change image every 3.5 seconds
+
+    </script>
+</body>
+</html>
